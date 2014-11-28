@@ -90,11 +90,20 @@ $.extend( $.simulate.prototype, {
 	},
 
 	plainEvent: function(type) {
-		return new window.Event( type, {
-			"view": window,
-			"bubbles": true,
-			"cancelable": true
-		} );
+		var event;
+
+		try {
+			event = new window.Event( type, {
+				"view": window,
+				"bubbles": true,
+				"cancelable": true
+			} );
+		} catch ( e ) {
+			event = document.createEvent( "Event" );
+			event.initEvent( type, true, false );
+		}
+
+		return event;
 	},
 
 	mouseEvent: function( type, options ) {
