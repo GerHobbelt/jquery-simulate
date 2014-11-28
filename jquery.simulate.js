@@ -11,7 +11,8 @@
 
 ;(function( $, undefined ) {
 
-var rkeyEvent = /^key/,
+var rplainEvent = /input|change|submit|focusin/,
+	rkeyEvent = /^key/,
 	rmouseEvent = /^(?:mouse|contextmenu)|click/;
 
 $.fn.simulate = function( type, options ) {
@@ -75,6 +76,10 @@ $.extend( $.simulate.prototype, {
 	},
 
 	createEvent: function( type, options ) {
+		if ( rplainEvent.test( type ) ) {
+			return this.plainEvent( type, options );
+		}
+
 		if ( rkeyEvent.test( type ) ) {
 			return this.keyEvent( type, options );
 		}
@@ -82,6 +87,14 @@ $.extend( $.simulate.prototype, {
 		if ( rmouseEvent.test( type ) ) {
 			return this.mouseEvent( type, options );
 		}
+	},
+
+	plainEvent: function(type) {
+		return new window.Event( type, {
+			"view": window,
+			"bubbles": true,
+			"cancelable": true
+		} );
 	},
 
 	mouseEvent: function( type, options ) {
