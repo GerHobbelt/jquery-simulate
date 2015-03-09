@@ -223,9 +223,7 @@ $.extend( $.simulate.prototype, {
 	},
 
 	dispatchEvent: function( elem, type, event ) {
-		if ( elem[ type ] ) {
-			elem[ type ]();
-		} else if ( elem.dispatchEvent ) {
+		if ( elem.dispatchEvent ) {
 			elem.dispatchEvent( event );
 		} else if ( elem.fireEvent ) {
 			elem.fireEvent( "on" + type, event );
