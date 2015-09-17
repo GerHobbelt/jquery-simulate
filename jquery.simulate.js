@@ -93,6 +93,9 @@ $.extend( $.simulate.prototype, {
 		if ( rmouseEvent.test( type ) ) {
 			return this.mouseEvent( type, options );
 		}
+
+		// we'll throw error if we couldn't match event type
+		throw new Error("Could not create event of type: " + type);
 	},
 
 	mouseEvent: function( type, options ) {
