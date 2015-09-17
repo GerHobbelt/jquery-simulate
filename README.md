@@ -2,6 +2,7 @@
 
 Simulate events to help unit test user interactions.
 
+
 Project Status
 --------------
 
@@ -11,8 +12,28 @@ Specifically we're hoping for the WebDriver API to become a much better solution
 
 That said, this project is stable and should work fine. Just keep the above in mind before using it.
 
+
 How to build
 ------------
+
+First, get a copy of the git repo by running:
+
+```shell
+git clone git://github.com/GerHobbelt/jquery-simulate.git
+```
+
+Enter the directory and install the node dependencies:
+
+```shell
+cd jquery-simulate
+npm install
+```
+
+Make sure you have `grunt` installed by testing:
+
+```shell
+grunt -version
+```
 
 If you don't yet have grunt installed:
 
@@ -20,13 +41,17 @@ If you don't yet have grunt installed:
 npm install -g grunt-cli
 ```
 
-Then:
-```sh
-npm install
+Now you can run `grunt` to run the build+test process:
+
+```shell
 grunt
 ```
+
 
 How to test
 -----------
 
-Open the `test/index.html` in a browser.
+- Open the `test/index.html` in a browser.
+
+- Or to run tests locally without a browser, run `grunt`, and this will run the tests in PhantomJS.
+
